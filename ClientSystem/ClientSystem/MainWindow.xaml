@@ -1,0 +1,47 @@
+﻿<Window x:Class="ClientSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientSystem"
+        mc:Ignorable="d"
+        Title="" Height="987" Width="1725">
+    <Grid Background="#ffee">
+        <StackPanel>
+            <Menu x:Name="menu" Visibility="Collapsed" Height="38">
+                <MenuItem Header="系统" FontSize="20" Height="36" Width="63">
+                    <MenuItem Header="注销" Click="login_out_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <Canvas  Height="964">
+                <ContentControl x:Name="back_panel" Height="954" Width="1715"></ContentControl>
+                <DockPanel x:Name="login_view" Height="954" Width="1715">
+                    <Image Source="/Views/power1.png" Height="920" Width="1394"></Image>
+                    <StackPanel Width="298" Height="617">
+                        <Label HorizontalAlignment="Center" FontSize="55" Height="238" Foreground="#8877" FontWeight="Bold" FontFamily="STCaiyun">
+                            <TextBlock Text="冗余电源监测及评估系统" TextWrapping="Wrap"/>
+                        </Label>
+                        <DockPanel>
+                            <Label Content="用户名" FontSize="20"></Label>
+                            <TextBox x:Name="userName" FontSize="20" ></TextBox>
+                        </DockPanel>
+
+                        <DockPanel>
+                            <Label Content="密码" FontSize="20"></Label>
+                            <TextBox x:Name="password" FontSize="20"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button x:Name="login" Content="登录" Width="118" Click="login_Click" FontSize="20"></Button>
+                            <Button x:Name="register" Content="注册" Width="101" Click="register_Click" FontSize="20"></Button>
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+            </Canvas>
+
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

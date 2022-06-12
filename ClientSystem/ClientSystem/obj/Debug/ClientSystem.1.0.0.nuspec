@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ClientSystem</id>
+    <version>1.0.0</version>
+    <authors>ClientSystem</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net5.0-windows7.0">
+        <dependency id="Fleck" version="1.2.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Npgsql" version="6.0.3" exclude="Build,Analyzers" />
+        <dependency id="RabbitMQ.Client" version="6.2.3" exclude="Build,Analyzers" />
+        <dependency id="ScottPlot.WPF" version="4.0.48" exclude="Build,Analyzers" />
+        <dependency id="WebSocketSharp-netstandard" version="1.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net5.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="D:\毕业文件\ClientSystem\ClientSystem\bin\x64\Debug\net5.0-windows\ClientSystem.runtimeconfig.json" target="lib\net5.0-windows7.0\ClientSystem.runtimeconfig.json" />
+    <file src="D:\毕业文件\ClientSystem\ClientSystem\bin\x64\Debug\net5.0-windows\ClientSystem.dll" target="lib\net5.0-windows7.0\ClientSystem.dll" />
+  </files>
+</package>

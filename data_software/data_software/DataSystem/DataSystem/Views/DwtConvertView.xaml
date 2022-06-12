@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="DataSystem.Views.DwtConvertView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1690">
+    <Grid Margin="0,0,0,10" Background="White">
+        <Grid HorizontalAlignment="Left" Height="47" Margin="10,733,0,0" VerticalAlignment="Top" Width="780">
+            <Label x:Name="label" Content="分解层次" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="levelNum" HorizontalAlignment="Left" Height="23" Margin="73,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="de_ap_btn" Content="概貌" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="de_ap_btn_Click"/>
+            <Button x:Name="st_sp_btn" Content="开始" HorizontalAlignment="Left" Margin="338,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="st_sp_btn_Click"/>
+        </Grid>
+        <Canvas HorizontalAlignment="Left" Height="718" Margin="10,10,0,0" VerticalAlignment="Top" Width="1670">
+            <WpfPlot x:Name="oriSignal" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="400" Canvas.Left="10" Panel.ZIndex="100"/>
+            <WpfPlot x:Name="dwtPlot" HorizontalAlignment="Left" Height="708" VerticalAlignment="Top" Width="1650" Canvas.Left="10" Panel.ZIndex="1"/>
+        </Canvas>
+
+    </Grid>
+</UserControl>

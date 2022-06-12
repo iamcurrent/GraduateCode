@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="ClientSystem.Views.PowerShowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1700">
+    <Grid Background="White">
+        <StackPanel>
+            <DockPanel>
+                 <Menu>
+                    <MenuItem Name="st_option" Header="开启远程数据" FontSize="20"></MenuItem>
+                    <MenuItem Name="sys_analyse_option" Header="开启系统分析" FontSize="20" Click="sys_analyse_option_Click"></MenuItem>
+                </Menu>
+                <TextBox x:Name="img"  FontSize="30"></TextBox>
+            </DockPanel>
+            
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <DockPanel x:Name="InfoPanel" HorizontalAlignment="Left">
+                    
+                </DockPanel>
+            </ScrollViewer>
+        </StackPanel>
+            
+    </Grid>
+</UserControl>

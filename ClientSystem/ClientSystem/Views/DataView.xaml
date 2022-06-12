@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ClientSystem.Views.DataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1700">
+    <Grid Background="White">
+        <DockPanel>
+            <StackPanel Width="247">
+                <StackPanel>
+                    <Label Content="纹波数据" FontSize="20"></Label>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="270">
+                        <StackPanel x:Name="ripplePanel" HorizontalAlignment="Left">
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="温度数据" FontSize="20"></Label>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Height="270">
+                        <StackPanel x:Name="tempPanel" HorizontalAlignment="Left">
+                        </StackPanel>
+                    </ScrollViewer>
+                   
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="电磁场数据" FontSize="20"></Label>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Height="270">
+                        <StackPanel x:Name="emPanel" HorizontalAlignment="Left">
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <DockPanel Height="128" Background="#ffee"></DockPanel>
+                <StackPanel>
+                <DockPanel>
+                          <WpfPlot Name="ripple_plot" Width="662" Height="348"></WpfPlot>
+                           <WpfPlot Name="temperature_plot" Width="684" Height="348"></WpfPlot>
+                 </DockPanel>
+                    <DockPanel>
+                        <WpfPlot Name="em_plot" Width="663" Height="348"></WpfPlot>
+                        <WpfPlot Name="feature_plot" Width="684" Height="348"></WpfPlot>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
+    </Grid>
+</UserControl>

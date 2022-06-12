@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="power.png" />
+    <None Remove="power1.png" />
+    <None Remove="Views\power1.png" />
+    <None Remove="Views\simple.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="6.0.3" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.3" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.0.48" />
+    <PackageReference Include="WebSocketSharp-netstandard" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FFT">
+      <HintPath>..\..\..\毕业论文\data_software\DataSystem\FFT\for_redistribution_files_only\FFT.dll</HintPath>
+    </Reference>
+    <Reference Include="FFTNative">
+      <HintPath>..\..\..\毕业论文\data_software\DataSystem\FFT\for_redistribution_files_only\FFTNative.dll</HintPath>
+    </Reference>
+    <Reference Include="FindPeaks">
+      <HintPath>C:\Users\Administrator\Desktop\FindPeaks\for_redistribution_files_only\FindPeaks.dll</HintPath>
+    </Reference>
+    <Reference Include="FindPeaksNative">
+      <HintPath>C:\Users\Administrator\Desktop\FindPeaks\for_redistribution_files_only\FindPeaksNative.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray">
+      <HintPath>F:\matlab2019\toolbox\dotnetbuilder\bin\win64\v4.0\MWArray.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="power.png" />
+    <Resource Include="power1.png" />
+    <Resource Include="Views\power1.png" />
+    <Resource Include="Views\simple.png" />
+  </ItemGroup>
+
+</Project>

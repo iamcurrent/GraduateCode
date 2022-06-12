@@ -1,0 +1,23 @@
+﻿<Window x:Class="ServiceSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <DockPanel>
+                <Label Content="服务器IP" Width="76"></Label>
+                <TextBlock x:Name="ipAddress"></TextBlock>
+            </DockPanel>
+            <DockPanel>
+                <Label Content="当前连接数" Width="76"></Label>
+                <TextBlock Name="connectionNums" ></TextBlock>
+            </DockPanel>
+            <Button x:Name="start" Content="启动" Margin="10,0,706,0" Click="start_Click"></Button>
+            <RichTextBox x:Name="info" Height="343"></RichTextBox>
+        </StackPanel>
+    </Grid>
+</Window>

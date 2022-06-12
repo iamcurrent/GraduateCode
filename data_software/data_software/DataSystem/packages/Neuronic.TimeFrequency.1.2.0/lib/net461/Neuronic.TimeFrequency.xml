@@ -1,0 +1,1678 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neuronic.TimeFrequency</name>
+    </assembly>
+    <members>
+        <member name="T:Neuronic.TimeFrequency.IPadding`1">
+            <summary>
+            Abstraction of a signal padding method.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.IPadding`1.Pad(System.Collections.Generic.IReadOnlyList{`0},System.Int32)">
+            <summary>
+            Pads the specified list in both directions with the specified count of elements.
+            </summary>
+            <param name="list">The list.</param>
+            <param name="count">The count.</param>
+            <returns>The padded sequence.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.SymetricPadding`1">
+            <summary>
+            A padding method that reflects the list elements across it's boundaries.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <seealso cref="T:Neuronic.TimeFrequency.IPadding`1" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.SymetricPadding`1.Pad(System.Collections.Generic.IReadOnlyList{`0},System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:Neuronic.TimeFrequency.ZeroPadding`1">
+            <summary>
+            Simple padding method that uses zeros as padding elements.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <seealso cref="T:Neuronic.TimeFrequency.IPadding`1" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.ZeroPadding`1.Pad(System.Collections.Generic.IReadOnlyList{`0},System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:Neuronic.TimeFrequency.IReadOnlySignal`1">
+            <summary>
+            Read-only interface of a <see cref="T:Neuronic.TimeFrequency.Signal`1"/>
+            </summary>
+            <typeparam name="T">The type of the samples.</typeparam>
+            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1" />
+        </member>
+        <member name="P:Neuronic.TimeFrequency.IReadOnlySignal`1.Start">
+            <summary>
+            Gets the time of the first sample.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.IReadOnlySignal`1.SamplingRate">
+            <summary>
+            Gets the sampling rate.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.IReadOnlySignal`1.SamplingPeriod">
+            <summary>
+            Gets the sampling period.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.IReadOnlySignal`1.End">
+            <summary>
+            Gets the time of the last sample.
+            </summary>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.IStopCriteria`1">
+            <summary>
+            Abstraction of a stop criteria for an iterative algorithm.
+            </summary>
+            <typeparam name="T">The type of the algorithm's state.</typeparam>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.IStopCriteria`1.ShouldStop(`0)">
+            <summary>
+            Determines if the algorithm should stop iterating.
+            </summary>
+            <param name="state">The current state.</param>
+            <returns><c>true</c> if the algorithm should stop; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.ChoiWilliamsDistribution">
+            <summary>
+            Choi-Williams Distribution.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Kernels.DopplerLagKernel" />
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Kernels.ChoiWilliamsDistribution.Sigma">
+            <summary>
+            Gets or sets the sigma parameter.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.ChoiWilliamsDistribution.Evaluate(System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            Evaluates the kernel in the specified buffer.
+            </summary>
+            <param name="g">The buffer.</param>
+            <param name="dopplerSample">The doppler sample.</param>
+            <param name="lagSample">The lag sample.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.DopplerKernel">
+            <summary>
+            Base class for Lag Independent kernels.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Kernels.DopplerLagKernel" />
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Kernels.DopplerKernel.Window">
+            <summary>
+            Gets or sets the window function samples.
+            </summary>
+            <seealso cref="T:MathNet.Numerics.Window"/>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Kernels.DopplerKernel.UseDopplerDomain">
+            <summary>
+            Gets or sets a value indicating whether to use time or Doppler domain.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.DopplerKernel.Evaluate(System.Int32,System.Int32,System.Double[],System.Int32)">
+            <summary>
+            Evaluates lag kernel.
+            </summary>
+            <param name="n">The number of samples in the Doppler domain.</param>
+            <param name="nTime">The number of samples in the time domain.</param>
+            <param name="output">The output buffer.</param>
+            <param name="start">The start index in <paramref name="output"/>.</param>
+            <returns>The number of samples.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.DopplerKernel.Evaluate(System.Int32,System.Int32)">
+            <summary>
+            Evaluates lag kernel.
+            </summary>
+            <param name="n">The number of samples in the Doppler domain.</param>
+            <param name="nTime">The number of samples in the time domain.</param>
+            <returns>The lag kernel.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.DopplerKernel.PadWindow(System.Collections.Generic.IList{System.Double},System.Collections.Generic.IList{System.Double})">
+            <summary>
+            Pads the window to the specified length.
+            </summary>
+            <param name="src">The source window.</param>
+            <param name="dst">The destination window.</param>
+            <exception cref="T:System.ArgumentException">The source does not fit in the destination. - src</exception>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.DopplerLagKernel">
+            <summary>
+            Base class for Doppler-lag kernels for time-frequency distributions.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.DopplerLagKernel.Evaluate(System.Int32)">
+            <summary>
+            Evaluates the kernel with the specified number of samples.
+            </summary>
+            <param name="count">The sample count.</param>
+            <returns>The Doppler-lag smoothing kernel.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.DopplerLagKernel.Evaluate(System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            When implemented, evaluates the kernel in the specified buffer.
+            </summary>
+            <param name="g">The buffer.</param>
+            <param name="dopplerSample">The doppler sample.</param>
+            <param name="lagSample">The lag sample.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.ProductKernel">
+            <summary>
+            Product kernel
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Kernels.DopplerKernel" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.ProductKernel.Evaluate(System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            Evaluates the kernel in the specified buffer.
+            </summary>
+            <param name="g">The buffer.</param>
+            <param name="dopplerSample">The doppler sample.</param>
+            <param name="lagSample">The lag sample.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.SmoothedWignerVilleDistribution">
+            <summary>
+            Smoothed Wigner-Ville Lag-Independent kernel.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Kernels.DopplerKernel" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.SmoothedWignerVilleDistribution.Evaluate(System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            Evaluates the kernel in the specified buffer.
+            </summary>
+            <param name="g">The buffer.</param>
+            <param name="dopplerSample">The doppler sample.</param>
+            <param name="lagSample">The lag sample.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Kernels.WignerVilleDistribution">
+            <summary>
+            The Wigner-Ville Distribution.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Kernels.DopplerLagKernel" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Kernels.WignerVilleDistribution.Evaluate(System.Double[0:,0:],System.Double,System.Double)">
+            <summary>
+            Evaluates the kernel in the specified buffer.
+            </summary>
+            <param name="g">The buffer.</param>
+            <param name="dopplerSample">The doppler sample.</param>
+            <param name="lagSample">The lag sample.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Signal`1">
+            <summary>
+            Represents a measured signal sampled with a fixed rate.
+            </summary>
+            <typeparam name="T">The type of the samples.</typeparam>
+            <seealso cref="T:Neuronic.TimeFrequency.IReadOnlySignal`1" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Signal`1.#ctor(`0[],System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Signal`1"/> type.
+            </summary>
+            <param name="samples">The samples.</param>
+            <param name="start">The time of the first sample.</param>
+            <param name="fs">The sampling rate.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="samples"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="fs"/> is not a positive value.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the sample at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The sample at <paramref name="index"/>.</returns>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.Samples">
+            <summary>
+            Gets the samples.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.Start">
+            <summary>
+            Gets the time of the first sample.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.SamplingRate">
+            <summary>
+            Gets the sampling rate.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.SamplingPeriod">
+            <summary>
+            Gets the sampling period.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.End">
+            <summary>
+            Gets the time of the last sample.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Signal`1.Count">
+            <summary>
+            Gets the amount of samples.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Signal`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.BilinearExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation"/>.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.FindClosestIndexOfFrequency(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Double)">
+            <summary>
+            Finds the index of the computed frequency that is closest to the specified value.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The closest index to <paramref name="frequency"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateValueOfFrequency(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Double)">
+            <summary>
+            Enumerates the amplitude values associated to the specified frequency, along the time axis.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The values with frequency <paramref name="frequency"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateValuesOfFrequencyAt(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Int32)">
+            <summary>
+            Enumerates the amplitude values associated to the frequency at the specified index, along the time axis.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="index">The frequency index.</param>
+            <returns>The values with the frequency at <paramref name="index"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateTimes(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation)">
+            <summary>
+            Enumerates the computed coordinates in the time domain.
+            </summary>
+            <param name="transform">The transform.</param>
+            <returns>The coordinates in the time axis.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.FindClosestOffsetOfTime(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Double)">
+            <summary>
+            Finds the offset of the time domain sample that is closest to the specified value.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="time">The time.</param>
+            <returns>The closest offset to <paramref name="time"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateValuesOfTime(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Double)">
+            <summary>
+            Enumerates the amplitude values associated to the specified time, along the frequency axis.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="time">The time.</param>
+            <returns>The values with time <paramref name="time"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateValuesOfTimeAt(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation,System.Int32)">
+            <summary>
+            Enumerates the amplitude values associated to the time sample at the specified offset, along the frequency axis.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="offset">The offset.</param>
+            <returns>The values with the offset <paramref name="offset"/> in the time domain.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.BilinearExtensions.EnumerateValues(Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation)">
+            <summary>
+            Enumerates the computed amplitude along both axes.
+            </summary>
+            <param name="transform">The transform.</param>
+            <returns>The amplitude values.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform">
+            <summary>
+            Represents the Continuous Wavelet Transform (CWT).  
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingFFT(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Numerics.Complex},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the FFT method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the one proposed by Dr. Hans-Georg Stark on the book
+            "Wavelets and Signal Processing: An Application-Based Introduction", Springer (2005).
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingFFT(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Numerics.Complex},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the FFT method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the one proposed by Dr. Hans-Georg Stark on the book
+            "Wavelets and Signal Processing: An Application-Based Introduction", Springer (2005).
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingConvolutions(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Numerics.Complex},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the convolution method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingConvolutions(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Numerics.Complex},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the convolution method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingConvolutions(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the convolution method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The real-valued wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EstimateUsingConvolutions(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.Wavelets.IWavelet{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the CWT for the specified signal using the convolution method.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The real-valued wavelet.</param>
+            <param name="scales">The scales.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The computed CWT.</returns>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.SamplingPeriod">
+            <summary>
+            Gets the sampling period of the source signal.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.SampleCount">
+            <summary>
+            Gets the amount of samples in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Wavelet">
+            <summary>
+            Gets the wavelet function.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Scales">
+            <summary>
+            Gets the estimated scales.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Neuronic#TimeFrequency#Transforms#IBilinearTimeFrequencyRepresentation#FrequencyCount">
+            <summary>
+            Gets the amount of samples in the frequency domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Neuronic#TimeFrequency#Transforms#IBilinearTimeFrequencyRepresentation#Frequencies">
+            <summary>
+            Gets the computed frequencies.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the time-frequency content at the specified offset and scale.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="scaleIndex">The index of the scale in <see cref="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Scales"/>.</param>
+            <returns>The time-frequency content.</returns>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Item(System.Double,System.Double)">
+            <summary>
+            Gets the time-frequency content at the specified offset and scale.
+            </summary>
+            <param name="delay">The time.</param>
+            <param name="scale">The scale.</param>
+            <returns>The time-frequency content.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EnumerateValuesOfScale(System.Double)">
+            <summary>
+            Enumerates the computed time domain content for the specified scale.
+            </summary>
+            <param name="scale">The scale.</param>
+            <returns>The time domain content.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.EnumerateValuesOfScaleAt(System.Int32)">
+            <summary>
+            Enumerates the computed time domain content for the specified scale.
+            </summary>
+            <param name="scaleIndex">Index of the scale in <see cref="P:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.Scales"/>.</param>
+            <returns>The time domain content.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ContinuousWaveletTransform.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the computed time-frequency values.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform">
+            <summary>
+            Represents the Discrete Wavelet Transform (DWT).  
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet,Neuronic.TimeFrequency.IPadding{System.Double})">
+            <summary>
+            Estimates the DWT for the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="padding">The padding method.</param>
+            <returns>The computed DWT.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is <c>null</c>.</exception>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet,Neuronic.TimeFrequency.IPadding{System.Single})">
+            <summary>
+            Estimates the DWT for the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="wavelet">The wavelet.</param>
+            <param name="padding">The padding method.</param>
+            <returns>The computed DWT.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is <c>null</c>.</exception>
+            <remarks>
+            This algorithm is based on the <c>cwt</c> function in <c>Matlab R2014</c>.
+            </remarks>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.UpperScale">
+            <summary>
+            Gets the upper scale in a multi-scale DWT.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.SamplingPeriod">
+            <summary>
+            Gets the sampling period of the source signal.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Wavelet">
+            <summary>
+            Gets the wavelet function.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Approximation">
+            <summary>
+            Gets the approximation coefficients.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Detail">
+            <summary>
+            Gets the detail coefficients.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.EstimateNextScale(Neuronic.TimeFrequency.IPadding{System.Double})">
+            <summary>
+            Estimates the next DWT scale.
+            </summary>
+            <param name="padding">The padding.</param>
+            <returns>The next scale.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.EstimateMultiscale(Neuronic.TimeFrequency.IPadding{System.Double},System.Int32)">
+            <summary>
+            Estimates a multi-scale DWT analysis of the signal.
+            </summary>
+            <param name="padding">The padding.</param>
+            <param name="scales">The maximum number of scales or <c>zero</c> for unlimited.</param>
+            <returns>The lowest scale of the multi-scale DWT.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.Reverse">
+            <summary>
+            Reconstructs the original signal by reversing the DWT.
+            </summary>
+            <returns>The reconstructed signal.</returns>
+            <remarks>
+            If the DWT is multi-scale, the reconstruction includes also the upper scales.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.DiscreteWaveletTransform.ReverseMultiscale(System.Collections.Generic.IList{System.Double})">
+            <summary>
+            Reverses the DWT using the approximation coefficients reconstructed from lower scales.
+            </summary>
+            <param name="approximation">The approximation coefficients.</param>
+            <returns>The reconstructed signal.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition">
+            <summary>
+            Empirical Mode Decomposition (EMD) in Intrinsic Mode Functions (IMF).
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.IStopCriteria{Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState},Neuronic.TimeFrequency.IStopCriteria{Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState},System.Double,System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the EMD of the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="outerStop">The stop criteria of the outer loop. Default is <see cref="T:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria"/>.</param>
+            <param name="innerStop">The stop criteria of the inner loop, responsible for obtaining each IMF. Default is <see cref="T:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria"/>.</param>
+            <param name="alpha">Gradient step size, in the range (0, 1].</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The EMD of <paramref name="signal"/>.</returns>
+            <remarks>
+            This algorithm is based on the work of Rato, R. T., Ortigueira, M. D. and Batista, A. G., published in the article
+            "On the HHT, its problems, and some solutions",
+            Mechanical Systems and Signal Processing , vol. 22, no. 6, pp. 1374-1394, August 2008.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.IStopCriteria{Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState},Neuronic.TimeFrequency.IStopCriteria{Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState},System.Double,System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the EMD of the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="outerStop">The stop criteria of the outer loop.</param>
+            <param name="innerStop">The stop criteria of the inner loop, responsible for obtaining each IMF.</param>
+            <param name="alpha">Gradient step size, in the range (0, 1].</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The EMD of <paramref name="signal"/>.</returns>
+            <remarks>
+            This algorithm is based on the work of Rato, R. T., Ortigueira, M. D. and Batista, A. G., published in the article
+            "On the HHT, its problems, and some solutions",
+            Mechanical Systems and Signal Processing , vol. 22, no. 6, pp. 1374-1394, August 2008.
+            </remarks>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.SamplingPeriod">
+            <summary>
+            Gets the sampling period.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.Count">
+            <summary>
+            Gets the amount of IMFs.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.Item(System.Int32)">
+            <summary>
+            Gets the IMF at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The IMF.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.LocalSpectralAnalysis(System.Int32)">
+            <summary>
+            Performs the spectral analysis of the EMD using local AR approximations.
+            </summary>
+            <param name="windowLength">Length of the analysis window.</param>
+            <returns>The spectral analysis of the EMD.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="windowLength"/> is not positive.</exception>
+            <remarks>
+            This algorithm is based on the method proposed by Rato, R. T., Ortigueira, M. D. and Batista, A. G. in the article
+            "On the HHT, its problems, and some solutions",
+            Mechanical Systems and Signal Processing , vol. 22, no. 6, pp. 1374-1394, August 2008.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.HilbertSpectralAnalysis">
+            <summary>
+            Performs the Hilbert Spectral Analysis of the EMD.
+            </summary>
+            <returns>The Hilbert-Huang Transform of the signal.</returns>
+            <remarks>
+            This algorithm is based on Matlab.
+            </remarks>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState">
+            <summary>
+            Contains the state of the outer loop of the iterative algorithm used in
+            <see cref="!:Estimate(IReadOnlySignal&lt;double&gt;,IStopCriteria&lt;OuterState&gt;,IStopCriteria&lt;InnerState&gt;,double)"/>.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState.Signal">
+            <summary>
+            Gets the signal.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState.IntrinsicModeFunctions">
+            <summary>
+            Gets the obtained intrinsic mode functions.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState.Iteration">
+            <summary>
+            Gets the iteration.
+            </summary>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState">
+            <summary>
+            Contains the state of the inner loop of the iterative algorithm used in
+            <see cref="!:Estimate(IReadOnlySignal&lt;double&gt;,IStopCriteria&lt;OuterState&gt;,IStopCriteria&lt;InnerState&gt;,double)"/>.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState.IntrinsicModeFunction">
+            <summary>
+            Gets the obtained intrinsic mode function.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState.Bias">
+            <summary>
+            Gets the average of the signal envelopes.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState.Iteration">
+            <summary>
+            Gets the iteration.
+            </summary>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria">
+            <summary>
+            The default stop criteria for the outer loop of
+            <see cref="!:EmpiricalModeDecomposition.Estimate(IReadOnlySignal&lt;double&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.OuterState&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.InnerState&gt;,double)"/>
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria.#ctor(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria"/> class.
+            </summary>
+            <param name="originalSignal">The original signal.</param>
+            <param name="residual">The residual energy limit in dB. Normally between 40 and 60 dB.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="residual"/> is not a positive value.
+            </exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria.#ctor(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria"/> class.
+            </summary>
+            <param name="originalSignal">The original signal.</param>
+            <param name="residual">The residual energy limit in dB. Normally between 40 and 60 dB.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="residual"/> is not a positive value.
+            </exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria"/> class.
+            </summary>
+            <param name="energy">The energy.</param>
+            <param name="residual">The residual energy in dB. Normally between 40 and 60 dB.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Thrown when <paramref name="residual"/> is not a positive value.
+            </exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria.Residual">
+            <summary>
+            Gets the residual energy limit.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResidualStopCriteria.Neuronic#TimeFrequency#IStopCriteria{Neuronic#TimeFrequency#Transforms#EmpiricalModeDecomposition#OuterState}#ShouldStop(Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.OuterState)">
+            <summary>
+            Determines if the algorithm should stop iterating.
+            </summary>
+            <param name="state">The current state.</param>
+            <returns>
+              <c>true</c> if the algorithm should stop; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria">
+            <summary>
+            The default stop criteria for the inner loop of
+            <see cref="!:EmpiricalModeDecomposition.Estimate(IReadOnlySignal&lt;double&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.OuterState&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.InnerState&gt;,double)"/>
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria"/> class.
+            </summary>
+            <param name="resolution">The resolution limit in dB. Normally between 40 and 60 dB.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">resolution</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria.Resolution">
+            <summary>
+            Gets the resolution limit.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.ResolutionStopCriteria.Neuronic#TimeFrequency#IStopCriteria{Neuronic#TimeFrequency#Transforms#EmpiricalModeDecomposition#InnerState}#ShouldStop(Neuronic.TimeFrequency.Transforms.EmpiricalModeDecomposition.InnerState)">
+            <summary>
+            Determines if the algorithm should stop iterating.
+            </summary>
+            <param name="state">The current state.</param>
+            <returns>
+              <c>true</c> if the algorithm should stop; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.FixedStopCriteria">
+            <summary>
+            A stop criteria for 
+            <see cref="!:EmpiricalModeDecomposition.Estimate(IReadOnlySignal&lt;double&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.OuterState&gt;,IStopCriteria&lt;EmpiricalModeDecomposition.InnerState&gt;,double)"/>
+            with a fixed number of iterations.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.FixedStopCriteria.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.FixedStopCriteria"/> class.
+            </summary>
+            <param name="iterationCount">The iteration count.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="iterationCount"/> is not positive.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.FixedStopCriteria.IterationCount">
+            <summary>
+            Gets the iteration count.
+            </summary>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation">
+            <summary>
+            Abstraction of a Time Frequency Representation (TFR).
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation.SamplingPeriod">
+            <summary>
+            Gets the sampling period in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation.SampleCount">
+            <summary>
+            Gets the amount of samples in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation.Item(System.Int32,System.Double)">
+            <summary>
+            Gets the TFR magnitude for the specified time and frequency.
+            </summary>
+            <param name="offset">The sample offset in the time domain.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The TFR magnitude.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation">
+            <summary>
+            Abstraction of a Bilinear or Quadratic Time Frequency Representation (QTFR).
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Transforms.ITimeFrequencyRepresentation" />
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation.FrequencyCount">
+            <summary>
+            Gets the amount of samples in the frequency domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation.Frequencies">
+            <summary>
+            Gets the computed frequencies.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the TFR magnitude for the specified time and frequency.
+            </summary>
+            <param name="offset">The sample offset in the time domain.</param>
+            <param name="frequencyIndex">The frequency index in <see cref="P:Neuronic.TimeFrequency.Transforms.IBilinearTimeFrequencyRepresentation.Frequencies"/>.</param>
+            <returns>The TFR magnitude.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.SpectralAnalysis">
+            <summary>
+            Represents the spectral analysis of a signal, by analyzing it's principal components.  
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.#ctor(System.Collections.Generic.IEnumerable{Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal},System.Double,System.Double,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.SpectralAnalysis"/> class.
+            </summary>
+            <param name="components">The signal components.</param>
+            <param name="startTime">The offset of the first sample in the time domain.</param>
+            <param name="samplingPeriod">The sampling period.</param>
+            <param name="sampleCount">The samples count.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="components"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="samplingPeriod"/> is not positive.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.SamplingPeriod">
+            <summary>
+            Gets the sampling period.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.SampleCount">
+            <summary>
+            Gets the amount of samples in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.Count">
+            <summary>
+            Gets the number of components.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.Item(System.Int32)">
+            <summary>
+            Gets the component at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The component at <paramref name="index"/>.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.GetSpectrogram(System.Double,System.Double[])">
+            <summary>
+            Calculates the spectrogram of the signal by sampling the component signals in the frequency domain.
+            </summary>
+            <param name="spectralResolution">The desired spectral resolution.</param>
+            <param name="smoothingKernel">The smoothing kernel to apply to the spectrogram. <c>null</c> to disable smoothing.</param>
+            <returns>The spectrogram.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An enumerator that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal">
+            <summary>
+            Represents a signal that has a well defined instantaneous frequency in its whole domain. 
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal.#ctor(System.Collections.Generic.IReadOnlyList{System.Double},System.Collections.Generic.IReadOnlyList{System.Double})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal"/> struct.
+            </summary>
+            <param name="amplitude">The amplitude of the signal.</param>
+            <param name="frequency">The frequency of the signal.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throw when <paramref name="amplitude"/> or <paramref name="frequency"/> are <c>null</c>.
+            </exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal.Amplitude">
+            <summary>
+            Gets the amplitude of the signal.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal.Frequency">
+            <summary>
+            Gets the instantaneous frequency of the signal.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.SpectralAnalysis.MonocomponentSignal.FrequencyOffset">
+            <summary>
+            Gets the frequency offset.
+            </summary>
+            <value>
+            The frequency offset.
+            </value>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.Spectrogram">
+            <summary>
+            Spectrogram using Short Time Fourier Transform (STFT).
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.Spectrogram.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},System.Func{System.Int32,System.Double[]},System.Nullable{System.Int32},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the Spectrogram of the specified signal using the STFT algorithm.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="winFunc">The window function. Default to hamming window.</param>
+            <param name="overlap">The number of overlapped samples between consecutive window offsets.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The Spectrogram of <paramref name="signal"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is null.</exception>
+            <remarks>
+            This algorithm is based on the <c>spectrogram</c> function in <c>Matlab R2014</c>.
+            </remarks>
+            <seealso cref="T:MathNet.Numerics.Window"/>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.Spectrogram.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},System.Double[],System.Nullable{System.Int32},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the Spectrogram of the specified signal using the STFT algorithm.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="window">The window. Default to hamming window.</param>
+            <param name="overlap">The number of overlapped samples between consecutive window offsets.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The Spectrogram of <paramref name="signal"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is null.</exception>
+            <remarks>
+            This algorithm is based on the <c>spectrogram</c> function in <c>Matlab R2014</c>.
+            </remarks> 
+            <seealso cref="T:MathNet.Numerics.Window"/>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.Spectrogram.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},System.Func{System.Int32,System.Double[]},System.Nullable{System.Int32},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the Spectrogram of the specified signal using the STFT algorithm.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="winFunc">The window function. Default to hamming window.</param>
+            <param name="overlap">The number of overlapped samples between consecutive window offsets.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The Spectrogram of <paramref name="signal"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is null.</exception>
+            <remarks>
+            This algorithm is based on the <c>spectrogram</c> function in <c>Matlab R2014</c>.
+            </remarks> 
+            <seealso cref="T:MathNet.Numerics.Window"/>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.Spectrogram.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},System.Double[],System.Nullable{System.Int32},System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the Spectrogram of the specified signal using the STFT algorithm.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="window">The window. Default to hamming window.</param>
+            <param name="overlap">The number of overlapped samples between consecutive window offsets.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The Spectrogram of <paramref name="signal"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="signal"/> is null.</exception>
+            <remarks>
+            This algorithm is based on the <c>spectrogram</c> function in <c>Matlab R2014</c>.
+            </remarks>
+            <seealso cref="T:MathNet.Numerics.Window"/>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.SamplingPeriod">
+            <summary>
+            Gets the sampling period in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.SampleCount">
+            <summary>
+            Gets the amount of samples in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.FrequencyCount">
+            <summary>
+            Gets the amount of samples in the frequency domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.Frequencies">
+            <summary>
+            Gets the computed frequencies.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the spectrogram value for the specified offset and frequency.
+            </summary>
+            <param name="offset">The sample offset in time domain.</param>
+            <param name="freqIndex">The sample offset in the frequency domain.</param>
+            <returns>The time-frequency content.</returns>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.Item(System.Double,System.Double)">
+            <summary>
+            Gets the spectrogram value for the specified offset and frequency.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The time-frequency content.</returns>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.Spectrogram.Item(System.Int32,System.Double)">
+            <summary>
+            Gets the spectrogram value for the specified offset and frequency.
+            </summary>
+            <param name="offset">The sample offset in time domain.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The time-frequency content.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.Spectrogram.EnumerateValuesOfFrequencyAt(System.Int32)">
+            <summary>
+            Enumerates the values associated with the specified frequency.
+            </summary>
+            <param name="index">The index of the frequency.</param>
+            <returns>The TFD values.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution">
+            <summary>
+            Time-Frequency distribution (TFD).
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Double},Neuronic.TimeFrequency.Kernels.DopplerLagKernel,System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the TFD of the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="kernel">The kernel.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The estimated TFD.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when either the signal or the kernel are <c>null</c>.</exception>
+            <remarks>
+            This algorithm is based on the one proposed by J.M. O' Toole and B. Boashash on the article
+            "Fast and memory-efficient algorithms for computing quadratic time–frequency distributions",
+            Applied and Computational Harmonic Analysis, vol. 35, no. 2, pp. 350–358, 2013.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.Estimate(Neuronic.TimeFrequency.IReadOnlySignal{System.Single},Neuronic.TimeFrequency.Kernels.DopplerLagKernel,System.Threading.Tasks.ParallelOptions)">
+            <summary>
+            Estimates the TFD of the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+            <param name="kernel">The kernel.</param>
+            <param name="options">The options for parallelization.</param>
+            <returns>The estimated TFD.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when either the signal or the kernel are <c>null</c>.</exception>
+            <remarks>
+            This algorithm is based on the one proposed by J.M. O' Toole and B. Boashash on the article
+            "Fast and memory-efficient algorithms for computing quadratic time–frequency distributions",
+            Applied and Computational Harmonic Analysis, vol. 35, no. 2, pp. 350–358, 2013.
+            </remarks>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.StartTime">
+            <summary>
+            Gets the offset of the first sample in the time domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.SamplingPeriod">
+            <summary>
+            Gets the sampling period.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.SampleCount">
+            <summary>
+            Gets the amount of samples.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.FrequencyCount">
+            <summary>
+            Gets the amount of samples in the frequency domain.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.Frequencies">
+            <summary>
+            Gets the computed frequencies.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets the TFD value for the specified frequency and offset.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="freqIndex">The frequency index.</param>
+            <returns>The TFD value.</returns>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Transforms.TimeFrequencyDistribution.Item(System.Double,System.Double)">
+            <summary>
+            Gets the TFD value for the specified frequency and offset.
+            </summary>
+            <param name="delay">The delay.</param>
+            <param name="frequency">The frequency.</param>
+            <returns>The TFD value.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet">
+            <summary>
+            Represents a wavelet defined by an bi-orthogonal base.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet.#ctor(System.String,System.String,System.Double[],System.Double[],System.Double[],System.Double[],System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet"/> class.
+            </summary>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="lowRec">The low pass reconstruction filter.</param>
+            <param name="highRec">The high pass reconstruction filter.</param>
+            <param name="lowDec">The low pass decomposition filter.</param>
+            <param name="highDec">The high pass decomposition filter.</param>
+            <param name="vanishingMoments">The vanishing moments.</param>
+            <param name="freq">The central frequency.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when any of the filters is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the filter lengths do not match.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="vanishingMoments"/> is negative.</exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet.#ctor(Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet,System.String,System.String,System.Double[],System.Double[],System.Double[],System.Double[],System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet"/> class.
+            </summary>
+            <param name="reverse">The other wavelet.</param>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="lowRec">The low pass reconstruction filter.</param>
+            <param name="highRec">The high pass reconstruction filter.</param>
+            <param name="lowDec">The low pass decomposition filter.</param>
+            <param name="highDec">The high pass decomposition filter.</param>
+            <param name="vanishingMoments">The vanishing moments.</param>
+            <param name="freq">The central frequency.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="reverse"/> or any of the filters is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the filter lengths do not match.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="vanishingMoments"/> is negative.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet.Other">
+            <summary>
+            Gets the other wavelet function.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet.DesiredOutputSize">
+            <summary>
+            Gets the size that should have the signal returned by <see cref="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.EvaluateDomain" />.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.BiorthogonalWavelet.Upcoef(System.Double[],System.Int32)">
+            <summary>
+            Convolves the specified coefficient vector with the filters to the specified level of precision.
+            </summary>
+            <param name="coeffs">The coefficients to convolve.</param>
+            <param name="level">The level.</param>
+            <returns>
+            The convolved coefficients.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet">
+            <summary>
+            Represents a wavelet defined by a continuous function.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Wavelets.WaveletBase" />
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.#ctor(System.Func{System.Double,System.Numerics.Complex},System.String,System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet"/> class.
+            </summary>
+            <param name="func">The wavelet function.</param>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="freq">The central frequency.</param>
+            <param name="min">The minimum time.</param>
+            <param name="max">The maximum time.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="max"/> is less than <paramref name="min"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="func"/> is <c>null</c>.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Minimum">
+            <summary>
+            Gets the minimum time value.
+            </summary>
+            <remarks>
+            The function is zero for all values in the range (-Inf,<see cref="P:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Minimum"/>).
+            </remarks>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Maximum">
+            <summary>
+            Gets the maximum time value.
+            </summary>
+            <remarks>
+            The function is zero for all values in the range (<see cref="P:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Maximum"/>, Inf).
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Evaluate(System.Double)">
+            <summary>
+            Evaluates the wavelet function at the specified time instant.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The evaluated value.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.Evaluate(Neuronic.TimeFrequency.Signal{System.Numerics.Complex})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.ContinuousWavelet.EvaluateDomain">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.IWavelet`1">
+            <summary>
+            Abstraction of a wavelet function of the specified type.
+            </summary>
+            <typeparam name="T">The type of the wavelet's values (complex or real).</typeparam>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.IWavelet`1.EvaluateDomain">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>The evaluated values.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.IWavelet`1.Evaluate(System.Double,System.Double,System.Int32)">
+            <summary>
+            Evaluates the wavelet function in the specified range.
+            </summary>
+            <param name="min">The minimum time.</param>
+            <param name="max">The maximum time.</param>
+            <param name="count">The amount of samples.</param>
+            <returns>The evaluated values.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.IWavelet`1.Evaluate(Neuronic.TimeFrequency.Signal{`0})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.IWavelet`1.CentralFrequency">
+            <summary>
+            Gets the wavelet's estimated central frequency.
+            </summary>
+            <remarks>
+            The central frequency if the wavelet's predominant frequency band according to it's frequency spectrum.
+            </remarks>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet">
+            <summary>
+            Represents a wavelet defined by an orthogonal base.
+            </summary>
+            <seealso cref="T:Neuronic.TimeFrequency.Wavelets.WaveletBase" />
+        </member>
+        <member name="F:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.PrecisionLevel">
+            <summary>
+            The precision level for <see cref="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.EvaluateDomain"/>.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.#ctor(System.String,System.String,System.Double[],System.Double[],System.Double[],System.Double[],System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet"/> class.
+            </summary>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="lowRec">The low pass reconstruction filter.</param>
+            <param name="highRec">The high pass reconstruction filter.</param>
+            <param name="lowDec">The low pass decomposition filter.</param>
+            <param name="highDec">The high pass decomposition filter.</param>
+            <param name="vanishingMoments">The vanishing moments.</param>
+            <param name="freq">The central frequency.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when any of the filters is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the filter lengths do not match.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="vanishingMoments"/> is negative.</exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet"/> class.
+            </summary>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="filterLength">Length of the filter.</param>
+            <param name="vanishingMoments">The vanishing moments.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="vanishingMoments"/> is negative.</exception>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.FilterLength">
+            <summary>
+            Gets the length of the filters.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.VanishingMoments">
+            <summary>
+            Gets the amount of vanishing moments in the PSI function.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.LowReconstructionFilter">
+            <summary>
+            Gets the low pass reconstruction filter.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.HighReconstructionFilter">
+            <summary>
+            Gets the high pass reconstruction filter.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.LowDecompositionFilter">
+            <summary>
+            Gets the low pass decomposition filter.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.HighDecompositionFilter">
+            <summary>
+            Gets the high pass decomposition filter.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.DesiredOutputSize">
+            <summary>
+            Gets the size that should have the signal returned by <see cref="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.EvaluateDomain"/>.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Upcoef(System.Int32)">
+            <summary>
+            Performs upsampling convolution with the filters to the specified level of precision.
+            </summary>
+            <param name="level">The level.</param>
+            <returns>The convolved samples.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Upcoef(System.Double[],System.Int32)">
+            <summary>
+            Convolves the specified coefficient vector with the filters to the specified level of precision.
+            </summary>
+            <param name="coeffs">The coefficients to convolve.</param>
+            <param name="level">The level.</param>
+            <returns>The convolved coefficients.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Evaluate(Neuronic.TimeFrequency.Signal{System.Numerics.Complex})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Evaluate(Neuronic.TimeFrequency.Signal{System.Double})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.EvaluateDomain">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.ProtectedEvaluate">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>
+            The evaluated values without zero padding.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Interpolate(Neuronic.TimeFrequency.Signal{System.Double},Neuronic.TimeFrequency.Signal{System.Numerics.Complex})">
+            <summary>
+            Interpolates the specified function.
+            </summary>
+            <param name="input">The input function.</param>
+            <param name="result">The result.</param>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.OrthogonalWavelet.Interpolate(Neuronic.TimeFrequency.Signal{System.Double},Neuronic.TimeFrequency.Signal{System.Double})">
+            <summary>
+            Interpolates the specified function.
+            </summary>
+            <param name="input">The input function.</param>
+            <param name="result">The result.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet">
+            <summary>
+            Represents a wavelet defined by a continuous function f: R -> R.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet.#ctor(System.Func{System.Double,System.Double},System.String,System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet"/> class.
+            </summary>
+            <param name="func">The function.</param>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The family name.</param>
+            <param name="freq">The central frequency.</param>
+            <param name="min">The minimum time.</param>
+            <param name="max">The maximum ime.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="max"/> is less than <paramref name="min"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">func</exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet.Evaluate(System.Double)">
+            <summary>
+            Evaluates the function at the specified time instant.
+            </summary>
+            <param name="time">The time.</param>
+            <returns>The evaluated value.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet.EvaluateDomain">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet.Evaluate(System.Double,System.Double,System.Int32)">
+            <summary>
+            Evaluates the wavelet function in the specified range.
+            </summary>
+            <param name="min">The minimum time.</param>
+            <param name="max">The maximum time.</param>
+            <param name="count">The amount of samples.</param>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.RealContinuousWavelet.Evaluate(Neuronic.TimeFrequency.Signal{System.Double})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.WaveletBase">
+            <summary>
+            Base class for wavelet functions.  
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Neuronic.TimeFrequency.Wavelets.WaveletBase"/> class.
+            </summary>
+            <param name="shortName">The short name.</param>
+            <param name="familyName">The wavelet family name.</param>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.WaveletBase.ShortName">
+            <summary>
+            Gets the short name.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.WaveletBase.FamilyName">
+            <summary>
+            Gets the name of the wavelet family.
+            </summary>
+        </member>
+        <member name="P:Neuronic.TimeFrequency.Wavelets.WaveletBase.CentralFrequency">
+            <summary>
+            Gets the wavelet's estimated central frequency.
+            </summary>
+            <remarks>
+            The central frequency if the wavelet's predominant frequency band according to it's frequency spectrum.
+            </remarks>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.EstimateCentralFrequency(System.Numerics.Complex[],System.Double)">
+            <summary>
+            Estimates the central frequency from the specified values.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="samplingPeriod">The sampling period.</param>
+            <returns>The estimated central frequency.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.EstimateCentralFrequency(Neuronic.TimeFrequency.Signal{System.Numerics.Complex})">
+            <summary>
+            Estimates the central frequency from the specified values.
+            </summary>
+            <param name="signal">The signal.</param>
+            <returns>The estimated central frequency.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.EstimateCentralFrequency(System.Double[],System.Double)">
+            <summary>
+            Estimates the central frequency from the specified values.
+            </summary>
+            <param name="values">The values.</param>
+            <param name="samplingPeriod">The sampling period.</param>
+            <returns>The estimated central frequency.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.EstimateCentralFrequency(Neuronic.TimeFrequency.Signal{System.Double})">
+            <summary>
+            Estimates the central frequency from the specified values.
+            </summary>
+            <param name="signal">The signal.</param>
+            <returns>The estimated central frequency.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.Evaluate(System.Double,System.Double,System.Int32)">
+            <summary>
+            Evaluates the wavelet function in the specified range.
+            </summary>
+            <param name="min">The minimum time.</param>
+            <param name="max">The maximum time.</param>
+            <param name="count">The amount of samples.</param>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.Evaluate(Neuronic.TimeFrequency.Signal{System.Numerics.Complex})">
+            <summary>
+            Evaluates the wavelet function in the range defined by the specified signal.
+            </summary>
+            <param name="signal">The signal.</param>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletBase.EvaluateDomain">
+            <summary>
+            Evaluates the wavelet function in all it's domain.
+            </summary>
+            <returns>
+            The evaluated values.
+            </returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.WaveletExtensions">
+            <summary>
+            Contains extension methods for the wavelets.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletExtensions.GetFrequencyOf``1(Neuronic.TimeFrequency.Wavelets.IWavelet{``0},System.Double,System.Double)">
+            <summary>
+            Gets the predominant frequency of the wavelet at the specified scale.
+            </summary>
+            <typeparam name="T">The type of the wavelet values.</typeparam>
+            <param name="wavelet">The wavelet.</param>
+            <param name="scale">The scale.</param>
+            <param name="samplingPeriod">The sampling period.</param>
+            <returns>The predominant frequency.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.WaveletExtensions.GetScaleFor``1(Neuronic.TimeFrequency.Wavelets.IWavelet{``0},System.Double,System.Double)">
+            <summary>
+            Gets the best scale for scaling the wavelet to the specified frequency..
+            </summary>
+            <typeparam name="T">The type of the wavelet values.</typeparam>
+            <param name="wavelet">The wavelet.</param>
+            <param name="frequency">The frequency.</param>
+            <param name="samplingPeriod">The sampling period.</param>
+            <returns>The predominant frequency.</returns>
+        </member>
+        <member name="T:Neuronic.TimeFrequency.Wavelets.Wavelets">
+            <summary>
+            Contains some common wavelet functions.
+            </summary>
+        </member>
+        <member name="F:Neuronic.TimeFrequency.Wavelets.Wavelets.MexicanHat">
+            <summary>
+            The Mexican Hat wavelet.
+            </summary>
+        </member>
+        <member name="F:Neuronic.TimeFrequency.Wavelets.Wavelets.ComplexMorlet">
+            <summary>
+            The Morlet wavelet with complex values.
+            </summary>
+        </member>
+        <member name="F:Neuronic.TimeFrequency.Wavelets.Wavelets.Morlet">
+            <summary>
+            The Morlet wavelet with real values.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.Gaussian(System.Int32)">
+            <summary>
+            Gets the Gaussian wavelet of the specified order.
+            </summary>
+            <param name="order">The order.</param>
+            <returns>The wavelet function.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="order"/> is not a positive value.</exception>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.Shannon(System.Double,System.Double)">
+            <summary>
+            Gets the Shannon wavelet the specified central frequency and bandwidth.
+            </summary>
+            <param name="centralFreq">The central frequency.</param>
+            <param name="bandwidth">The bandwidth.</param>
+            <returns>The </returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.Daubechies(System.Int32)">
+            <summary>
+            Gets the Daubechies wavelet of the specified order.
+            </summary>
+            <param name="order">The order.</param>
+            <returns>The wavelet.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throw when <paramref name="order"/> is not a positive value.</exception>
+        </member>
+        <member name="F:Neuronic.TimeFrequency.Wavelets.Wavelets.Haar">
+            <summary>
+            The Haar wavelet.
+            </summary>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.Biorthogonal(System.Int32)">
+            <summary>
+            Gets the Biorthogonal wavelet of the specified order.
+            </summary>
+            <param name="order">The order.</param>
+            <returns>The wavelet.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.Biorthogonal(System.Int32,System.Int32)">
+            <summary>
+            Gets the Biorthogonal wavelet with the specified vanishing moments.
+            </summary>
+            <param name="highDigit">The vanishing moments of the PSI function.</param>
+            <param name="lowDigit">The vanishing moments of the PHI function.</param>
+            <returns>The wavelet.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.ReverseBiorthogonal(System.Int32)">
+            <summary>
+            Gets the Reverse Biorthogonal wavelet of the specified order.
+            </summary>
+            <param name="order">The order.</param>
+            <returns>The wavelet.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.ReverseBiorthogonal(System.Int32,System.Int32)">
+            <summary>
+            Gets the Reverse Biorthogonal wavelet with the specified vanishing moments.
+            </summary>
+            <param name="highDigit">The vanishing moments of the PSI function.</param>
+            <param name="lowDigit">The vanishing moments of the PHI function.</param>
+            <returns>The wavelet.</returns>
+        </member>
+        <member name="M:Neuronic.TimeFrequency.Wavelets.Wavelets.FromName(System.String)">
+            <summary>
+            Finds the pre-defined wavelet with the specified short name.
+            </summary>
+            <param name="name">The short name.</param>
+            <returns>The wavelet or <c>null</c> if it is not included.</returns>
+        </member>
+    </members>
+</doc>

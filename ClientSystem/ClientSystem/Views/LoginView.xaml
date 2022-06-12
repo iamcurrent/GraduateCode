@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="ClientSystem.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientSystem.Views"
+             mc:Ignorable="d" Width="809" Height="455">
+    <Grid Background="#ffee">
+        <DockPanel>
+            <Image Width="580" Source="/Views/power1.png"></Image>
+            <StackPanel Width="218" Height="180">
+                <DockPanel>
+                    <Label Content="用户名"></Label>
+                    <TextBox x:Name="userName"></TextBox>
+                </DockPanel>
+
+                <DockPanel>
+                    <Label Content="密码"></Label>
+                    <TextBox x:Name="password"></TextBox>
+                </DockPanel>
+                <DockPanel>
+                    <Button x:Name="login" Content="登录" Width="118" Click="login_Click"></Button>
+                    <Button x:Name="register" Content="注册" Width="101"></Button>
+                </DockPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ClientSystem.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClientSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="980" d:DesignWidth="1700">
+    <Grid Background="White">
+        <DockPanel>
+            <StackPanel Width="129" Background="#ffee">
+                <Button x:Name="system_options" Content="系统状态" FontSize="20" Click="system_options_Click"></Button>
+                <Button x:Name="data_options" Content="数据操作" FontSize="20" Click="data_options_Click"></Button>
+            </StackPanel>
+            <ContentControl  x:Name="showPanel"></ContentControl>
+        </DockPanel>
+    </Grid>
+</UserControl>

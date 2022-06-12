@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="DataSystem.Views.Dev2991View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataSystem.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="987.601" d:DesignWidth="1600">
+    <Grid Background="White" Margin="0,0,0,10">
+        
+       <StackPanel HorizontalAlignment="Left" Height="916" Margin="10,10,0,0" VerticalAlignment="Top" Width="1700">
+            <Menu x:Name="menu" Height="44">
+                <MenuItem  FontSize="30" Header="设备" Height="47">
+                    <MenuItem Header="启动2991" Name="start2991" Click="Start2991_Click"/>
+                    <MenuItem Name="channelControl" Header="通道管理">
+                        <CheckBox x:Name="channel0" Tag="0" Content="通道0"/>
+                        <CheckBox x:Name="channel1" Tag="1" Content="通道1"/>
+                        <CheckBox x:Name="channel2" Tag="2" Content="通道2"/>
+                        <CheckBox x:Name="channel3" Tag="3" Content="通道3"/>
+                        <CheckBox x:Name="channel4" Tag="4" Content="通道4"/>
+                        <CheckBox x:Name="channel5" Tag="5" Content="通道5"/>
+                        <CheckBox x:Name="channel6" Tag="6" Content="通道6"/>
+                        <CheckBox x:Name="channel7" Tag="7" Content="通道7"/>
+                        <CheckBox x:Name="channel8" Tag="8" Content="通道8"/>
+                        <CheckBox x:Name="channel9" Tag="9" Content="通道9"/>
+                        <CheckBox x:Name="channel10" Tag="10" Content="通道10"/>
+                        <CheckBox x:Name="channel11" Tag="11" Content="通道11"/>
+                        <CheckBox x:Name="channel12" Tag="12" Content="通道12"/>
+                        <CheckBox x:Name="channel13" Tag="13" Content="通道13"/>
+                        <CheckBox x:Name="channel14" Tag="14" Content="通道14"/>
+                        <CheckBox x:Name="channel15" Tag="15" Content="通道15"/>
+                        <CheckBox Content="通道全选" x:Name="cb_Check_All" Click="cb_Check_All_Click" />
+                    </MenuItem>
+
+                </MenuItem>
+                <MenuItem FontSize="30" Header="数据管理">
+                    <CheckBox Content="连续采集" x:Name="cb_continueLog" Checked="cb_continueLog_Checked" Unchecked="cb_continueLog_Checked"/>
+                    <CheckBox Name="timeOutSave" Content="定时存储" Click="timeOutSave_Click"/>
+                    <MenuItem  Header="保存原始数据"  Name="bt_save_all_mat" Click="bt_save_all_mat_Click" ></MenuItem>
+                    <MenuItem Header="上传数据库" Name="upload_sql" ></MenuItem>
+                    <MenuItem Header="暂停采集" Name="bt_pause" Click="bt_pause_Click"/>
+
+
+                </MenuItem>
+            </Menu>
+
+            <Canvas Height="800">
+                <ContentControl Panel.ZIndex="0" x:Name="funcContentControl"  Canvas.Left="0" Canvas.Top="0"  Content="ContentControl" Height="800" Width="1690" ></ContentControl>
+                <DockPanel Canvas.Left="0" Canvas.Top="0" x:Name="oriAllPlot" Height="800" LastChildFill="False" Panel.ZIndex="100">
+                    <StackPanel Height="800" VerticalAlignment="Top" Width="400">
+                        <WpfPlot Name="ScottPlot0" Height="200"/>
+                        <WpfPlot Name="ScottPlot4" Height="200"/>
+                        <WpfPlot Name="ScottPlot8" Height="200"/>
+                        <WpfPlot Name="ScottPlot12" Height="200"/>
+                    </StackPanel>
+                    <StackPanel Height="800" VerticalAlignment="Top" Width="400">
+                        <WpfPlot  Name="ScottPlot1" Height="200"/>
+                        <WpfPlot  Name="ScottPlot5" Height="200"/>
+                        <WpfPlot  Name="ScottPlot9" Height="200"/>
+                        <WpfPlot  Name="ScottPlot13" Height="200"/>
+                    </StackPanel>
+                    <StackPanel Height="800" VerticalAlignment="Top" Width="400">
+                        <WpfPlot  Name="ScottPlot2" Height="200"/>
+                        <WpfPlot  Name="ScottPlot6" Height="200"/>
+                        <WpfPlot  Name="ScottPlot10" Height="200"/>
+                        <WpfPlot  Name="ScottPlot14" Height="200"/>
+                    </StackPanel>
+                    <StackPanel Height="800" VerticalAlignment="Top" Width="400">
+                        <WpfPlot  Name="ScottPlot3" Height="200"/>
+                        <WpfPlot  Name="ScottPlot7" Height="200"/>
+                        <WpfPlot  Name="ScottPlot11" Height="200"/>
+                        <WpfPlot  Name="ScottPlot15" Height="200"/>
+                    </StackPanel>
+                </DockPanel>
+            </Canvas>
+            <TextBox x:Name="textbox" Height="48"></TextBox>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

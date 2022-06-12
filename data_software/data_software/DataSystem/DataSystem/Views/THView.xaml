@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="DataSystem.Views.THView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataSystem.Views"
+             mc:Ignorable="d" d:DesignWidth="1650" Height="848.127">
+    <Grid Background="White">
+
+
+        <DockPanel HorizontalAlignment="Left" Height="828" LastChildFill="False" Margin="10,10,0,10" VerticalAlignment="Center" Width="1580">
+            <WpfPlot Name="thPlot"  Height="826"  Width="650" FontSize="18"/>
+            <StackPanel>
+                <WpfPlot Name="ePlot" Height="414"  Width="650" FontSize="18"/>
+                <WpfPlot Name="mPlot" Height="412"  Width="650" FontSize="18"></WpfPlot>
+            </StackPanel>
+
+            <StackPanel Height="772" VerticalAlignment="Top" Width="209">
+                <DockPanel Height="52" LastChildFill="False" Margin="4,0,-64,0">
+                    <Label Content="端口" FontSize="30" Margin="0,0,0,-27"></Label>
+                    <ComboBox Width="186" FontSize="25" Name="comboBox1"/>
+                </DockPanel>
+                <DockPanel Height="62" LastChildFill="False" Margin="4,0,-87,0">
+                    <Label Content="波特率" FontSize="30"></Label>
+                    <TextBox Width="173"  FontSize="25" Text="115200" Margin="0,0,0,10"/>
+                </DockPanel>
+                <DockPanel Height="59" LastChildFill="False" Margin="0,0,-64,0">
+                    <Label Content="数据位" FontSize="30"></Label>
+                    <TextBox Width="139" FontSize="25"  Text="8"></TextBox>
+                </DockPanel>
+                <DockPanel Height="62" LastChildFill="False" Margin="4,0,-64,0">
+                    <Label Content="停止位" FontSize="30" ></Label>
+                    <TextBox Width="135" FontSize="25" Text="1"></TextBox>
+                </DockPanel>
+                <DockPanel Height="65" LastChildFill="False" Margin="4,0,-64,0">
+                    <Label Content="校验位" FontSize="30"></Label>
+                    <TextBox Width="134" FontSize="25" Text="None"></TextBox>
+                </DockPanel>
+                <Button x:Name="button2" FontSize="30" Content="打开串口" Click="button2_Click" Margin="12,0,-29,0"/>
+                <RichTextBox x:Name="richTextBox" FontSize="30" Height="204" Margin="0,0,-29,0">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="RichTextBox"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <Button x:Name="clear_btn" FontSize="30" Content="Clear" Margin="10,0,-29,0" Height="62" Click="clear_btn_Click"/>
+                <Button x:Name="saveTH" FontSize="30" Content="保存数据" Height="61" Width="228" Click="saveTH_Click" Margin="10,0,-29,0" HorizontalAlignment="Left"></Button>
+                <Button x:Name="loadSql" Margin="10,0,-29,0" Content="上传数据库" FontSize="30" Width="228" Height="61" Click="loadSql_Click"></Button>
+            </StackPanel>
+
+        </DockPanel>
+
+
+    </Grid>
+</UserControl>

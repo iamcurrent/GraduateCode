@@ -1,0 +1,15 @@
+D:\毕业文件\ServiceSystem\ServiceSystem\bin\Debug\ServiceSystem.exe.config
+D:\毕业文件\ServiceSystem\ServiceSystem\bin\Debug\ServiceSystem.exe
+D:\毕业文件\ServiceSystem\ServiceSystem\bin\Debug\ServiceSystem.pdb
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.csproj.AssemblyReference.cache
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\MainWindow.g.cs
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\App.g.cs
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem_MarkupCompile.cache
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem_MarkupCompile.lref
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\MainWindow.baml
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.g.resources
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.Properties.Resources.resources
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.csproj.GenerateResource.cache
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.csproj.CoreCompileInputs.cache
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.exe
+D:\毕业文件\ServiceSystem\ServiceSystem\obj\Debug\ServiceSystem.pdb

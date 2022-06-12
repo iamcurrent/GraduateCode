@@ -1,0 +1,17 @@
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ClientSystem.exe
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ClientSystem.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ClientSystem.deps.json
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ClientSystem.runtimeconfig.json
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ClientSystem.pdb
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\Fleck.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\Newtonsoft.Json.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\Npgsql.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\RabbitMQ.Client.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ScottPlot.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\ScottPlot.WPF.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\System.Runtime.CompilerServices.Unsafe.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\websocket-sharp.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\FFT.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\FFTNative.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\MWArray.dll
+D:\毕业文件\ClientSystem\ClientSystem\bin\Release\net5.0-windows\publish\MWArray.xml
